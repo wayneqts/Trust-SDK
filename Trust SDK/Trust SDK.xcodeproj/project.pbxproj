@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		48F4737128630DE30022E773 /* Trust_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F4737028630DE30022E773 /* Trust_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48F4737828630DF80022E773 /* Trust_SDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4737728630DF80022E773 /* Trust_SDK.swift */; };
+		48F4737A2863127B0022E773 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F473792863127B0022E773 /* Device.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		48F4736D28630DE30022E773 /* Trust_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Trust_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48F4737028630DE30022E773 /* Trust_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trust_SDK.h; sourceTree = "<group>"; };
 		48F4737728630DF80022E773 /* Trust_SDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trust_SDK.swift; sourceTree = "<group>"; };
+		48F473792863127B0022E773 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			children = (
 				48F4737028630DE30022E773 /* Trust_SDK.h */,
 				48F4737728630DF80022E773 /* Trust_SDK.swift */,
+				48F473792863127B0022E773 /* Device.swift */,
 			);
 			path = "Trust SDK";
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48F4737828630DF80022E773 /* Trust_SDK.swift in Sources */,
+				48F4737A2863127B0022E773 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +195,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -248,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -274,6 +278,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +310,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
