@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		489675152872CBFC0097DE85 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 489675142872CBFC0097DE85 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		48F4737128630DE30022E773 /* Trust_SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F4737028630DE30022E773 /* Trust_SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		48F4737828630DF80022E773 /* Trust_SDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4737728630DF80022E773 /* Trust_SDK.swift */; };
 		48F4737A2863127B0022E773 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F473792863127B0022E773 /* Device.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		489675142872CBFC0097DE85 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/iOSSupport/System/Library/Frameworks/CoreNFC.framework; sourceTree = DEVELOPER_DIR; };
 		48F4736D28630DE30022E773 /* Trust_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Trust_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48F4737028630DE30022E773 /* Trust_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trust_SDK.h; sourceTree = "<group>"; };
 		48F4737728630DF80022E773 /* Trust_SDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trust_SDK.swift; sourceTree = "<group>"; };
@@ -24,17 +26,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489675152872CBFC0097DE85 /* CoreNFC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		489675132872CBFC0097DE85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				489675142872CBFC0097DE85 /* CoreNFC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		48F4736328630DE20022E773 = {
 			isa = PBXGroup;
 			children = (
 				48F4736F28630DE30022E773 /* Trust SDK */,
 				48F4736E28630DE30022E773 /* Products */,
+				489675132872CBFC0097DE85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

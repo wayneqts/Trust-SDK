@@ -15,148 +15,70 @@ import CoreNFC
 import AVFoundation
 public final class Trust_SDK {
     let name = "Trust_SDK"
-    let publicKey = "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEArVMSTzO7DRdN8MnSQmvOBhTCAb8wt/rlGLsUoJEHt4JPP5ukX2u7EGWFAwlCNwBnCsZZZycD48pkg5EalQAG sxVKRiCt5QdNUJHv0Q6JX/KkB04Dd+ey+nc8Xe9vMsGSqSzpG/ydsAEoSDvckBMW9WEyaO/8gorjP7oPhUESoHkvv3gRQLaSWTQ1qReDWFeAe6AET32IKLqOhVFsCvI0ftSwSh6/KmmC6EXeo6wPr3zUIHB9WRk/jCKtTVtf2OFFemODF91eWQYyQl3bAYmEPo0SWrFVDdoJV6MAleLI3/3Jk88jWOjTpS0ouAefvRzy4ZGXIq16bh8jetURzUG6lhyJLzdthXeV5NTwDFZqOEFoaxbxKQQuZ6EJzQpgXdBtWMUS6UDsNjB6lbLfML37AkV/7HBKeHhLm5b2QrgwzLAtauwz4DCAUpAktav30Vs29p2KDKwXabUJVQd6k+cLizKdQARjXDsvGTY+EThMq/z/kjLtg2xxYQr4DePL66R8llbE+c7D5+dsObtIYK/TJmx07M8PzSgiT/hvKuYNZ9lH+V656z80ThYp1Gux6yTqFnFyAv9Frnv4TdLU+OcvcilIEOpAN03HhohFIJA1KbXNfTSCMm5QwDQRaO3DX2GA277gFG6mmOJ0YKkZvhMaxhY3t0K+JPCMRPf1n9oVsYECAwEAAQ=="
     public init(){
         
     }
-    public func get_device_info(isEncrypted: Bool? = false)-> Any?{
-        if let isEncrypted = isEncrypted, isEncrypted {
-            let dict = [
-                "aaid": self.identifierForAdvertising() ?? "",
-                "accessories": self.countAccessories(),
-                "adid": self.identifierForAdvertising() ?? "",
-                "pencil": self.isPencialDevice(),
-                "battery_charging": self.getBatteryCharging(),
-                "battery_level": self.getBatteryLevel() ,
-                "bluetooth_mac_address": "-",
-                "camera_megapixel": "-",
-                "cpu": UIDevice.current.getCPUName(),
-                "cpu_cores": self.getCpuCore(),
-                "cpu_type": self.getArch() ?? "",
-                "css_image_loaded": false,
-                "developer_settings": false,
-                "display_zoom": false,
-                "ds_card": false,
-                "eid": "-",
-                "free_storage": self.deviceRemainingFreeSpaceInBytes() ?? 0,
-                "gpu_name": "-",
-                "gpu_vendor": "-",
-                "guided_access": self.isGuidedAccess(),
-                "iccid" : "-",
-                "icloud_ubiquti_token": "-",
-                "identifier": self.getIdentifier(),
-                "imei" :"-",
-                "imsi": "-",
-                "language": self.getLanguage(),
-                "latitude": "-",
-                "longitude": "-",
-                "local_language": self.getLocalLanguage(),
-                "low_power_mode": self.isLowPowerMode(),
-                "name": UIDevice.current.name,
-                "nfc_enabled": self.isEnableNFC(),
-                "os":"i",
-                "os_version": self.getOSInfo(),
-                "physical_memory": ProcessInfo.processInfo.physicalMemory,
-                "ringer_mode": "-",
-                "root_hiders": "-",
-                "rooted": UIDevice.current.isJailBroken,
-                "screen_brightness": UIScreen.main.brightness,
-                "screen_dpi": self.screenPPIAndDPI(),
-                "screen_height": UIScreen.main.bounds.size.height,
-                "screen_ppi": self.screenPPIAndDPI(),
-                "screen_width": UIScreen.main.bounds.size.width,
-                "screen_resolution": self.getScreenResolution(),
-                "screen_touch": "-",
-                "seid": "-",
-                "storage_capacity": UIDevice.current.totalDiskSpaceInBytes(),
-                "total_applications" : "-",
-                "udid": self.getIdentifier(),
-                "unlock_type": "-",
-                "virtual_env": "-",
-                "ip": self.getIPAddress(),
-                "mobile": self.isMobile(),
-                "wifi_bssid": "-",
-                "wifi_ssid": "-",
-                "wifi_security": "-",
-                "wifi_mac_address": "-"
-            ] as [String : Any]
+    public func get_device_info()-> Any?{
+        let dict = self.deviceInfo()
+        if isEncrypted {
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: dict)
                 if let json = String(data: jsonData, encoding: .utf8) {
                     if let data = try EncryptHelper.encryptWithRSAPublicKey(str: json, pubkeyBase64: publicKey)
                     {
-                        return data.base64EncodedString()
+                        return "v1." + data.base64EncodedString()
                     }
                 }
                 return nil
             } catch {
-                print("something went wrong with parsing json")
                 return nil
             }
         }
         else{
-            return [
-                "aaid": self.identifierForAdvertising() ?? "",
-                "accessories": self.countAccessories(),
-                "adid": self.identifierForAdvertising() ?? "",
-                "pencil": self.isPencialDevice(),
-                "battery_charging": self.getBatteryCharging(),
-                "battery_level": self.getBatteryLevel() ,
-                "bluetooth_mac_address": "-",
-                "camera_megapixel": "-",
-                "cpu": UIDevice.current.getCPUName(),
-                "cpu_cores": self.getCpuCore(),
-                "cpu_type": self.getArch() ?? "",
-                "css_image_loaded": false,
-                "developer_settings": false,
-                "display_zoom": false,
-                "ds_card": false,
-                "eid": "-",
-                "free_storage": self.deviceRemainingFreeSpaceInBytes() ?? 0 ,
-                "gpu_name": "-",
-                "gpu_vendor": "-",
-                "guided_access": self.isGuidedAccess(),
-                "iccid" : "-",
-                "icloud_ubiquti_token": "-",
-                "identifier": self.getIdentifier(),
-                "imei" :"-",
-                "imsi": "-",
-                "language": self.getLanguage(),
-                "latitude": "-",
-                "longitude": "-",
-                "local_language": self.getLocalLanguage(),
-                "low_power_mode": self.isLowPowerMode(),
-                "name": UIDevice.current.name,
-                "nfc_enabled": self.isEnableNFC(),
-                "os":"i",
-                "os_version": self.getOSInfo(),
-                "physical_memory": ProcessInfo.processInfo.physicalMemory,
-                "ringer_mode": "-",
-                "root_hiders": "-",
-                "rooted": UIDevice.current.isJailBroken,
-                "screen_brightness": UIScreen.main.brightness,
-                "screen_dpi": self.screenPPIAndDPI(),
-                "screen_height": UIScreen.main.bounds.size.height,
-                "screen_ppi": self.screenPPIAndDPI(),
-                "screen_width": UIScreen.main.bounds.size.width,
-                "screen_resolution": self.getScreenResolution(),
-                "screen_touch": "-",
-                "seid": "-",
-                "storage_capacity": UIDevice.current.totalDiskSpaceInBytes(),
-                "total_applications" : "-",
-                "udid": self.getIdentifier(),
-                "unlock_type": "-",
-                "virtual_env": "-",
-                "ip": self.getIPAddress(),
-                "mobile": self.isMobile(),
-                "wifi_bssid": "-",
-                "wifi_ssid": "-",
-                "wifi_security": "-",
-                "wifi_mac_address": "-"
-            ]
+            return dict
         }
     }
 
+    private func deviceInfo() ->  [String : Any]{
+        let dict = [
+            "aaid": self.identifierForAdvertising() ?? "",
+            "accessories": self.countAccessories(),
+            "adid": self.identifierForAdvertising() ?? "",
+            "pencil": self.isPencialDevice(),
+            "battery_charging": self.getBatteryCharging(),
+            "battery_level": self.getBatteryLevel() ,
+            "cpu": UIDevice.current.getCPUName(),
+            "cpu_cores": self.getCpuCore(),
+            "cpu_type": self.getArch() ?? "",
+            "css_image_loaded": false,
+            "developer_settings": false,
+            "display_zoom": false,
+            "ds_card": false,
+            "free_storage": self.deviceRemainingFreeSpaceInBytes() ?? 0,
+            "guided_access": self.isGuidedAccess(),
+            "identifier": self.getIdentifier(),
+            "language": self.getLanguage(),
+            "local_language": self.getLocalLanguage(),
+            "low_power_mode": self.isLowPowerMode(),
+            "name": UIDevice.current.name,
+            "nfc_enabled": self.isEnableNFC(),
+            "os":"i",
+            "os_version": self.getOSInfo(),
+            "physical_memory": ProcessInfo.processInfo.physicalMemory,
+            "rooted": UIDevice.current.isJailBroken,
+            "screen_brightness": UIScreen.main.brightness,
+            "screen_dpi": self.screenPPIAndDPI(),
+            "screen_height": UIScreen.main.bounds.size.height,
+            "screen_ppi": self.screenPPIAndDPI(),
+            "screen_width": UIScreen.main.bounds.size.width,
+            "screen_resolution": self.getScreenResolution(),
+            "storage_capacity": UIDevice.current.totalDiskSpaceInBytes(),
+            "udid": self.getIdentifier(),
+            "ip": self.getIPAddress(),
+            "mobile": self.isMobile()
+        ] as [String : Any]
+        return dict
+    }
     
     private func getScreenResolution()-> String{
         let width = UIScreen.main.nativeBounds.size.width
